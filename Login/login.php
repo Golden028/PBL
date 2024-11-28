@@ -1,29 +1,25 @@
 <?php
 session_start();
 
-// Initialize error messages
-$error_message = '';
+// Dummy user data (replace with database queries in real applications)
+$users = [
+    'admin' => 'password123',
+    'user1' => 'user123'
+];
 
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    // Form validation
-    if (empty($username) || empty($password)) {
-        $error_message = "Must be filled.";
-    } elseif (strlen($password) < 5) {
-        $error_message = "Password is at least 5 characters.";
-    } elseif (!preg_match('/[0-9]/', $password)) {
-        $error_message = "Password must consist of letters and numbers.";
-    } else {
-        // If validation passes, save username and redirect to home
+    if (array_key_exists($username, $users) && $users[$username] === $password) {
         $_SESSION['username'] = $username;
-        header("Location: home.php");
-        exit;
+        header('Location: dashboard.php'); // Redirect to dashboard
+        exit();
+    } else {
+        $error = "Invalid username or password";
+        header("Location: index.html?error=" . urlencode($error));
+        exit();
     }
 }
-if ($error_message):
-    <div class="error-message"><echo $error_message; </div>
-endif;
 ?>
