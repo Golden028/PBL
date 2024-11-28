@@ -1,0 +1,42 @@
+/* Sidebar */
+.bg-primary {
+    background-color: #295f98 !important;
+}
+
+/* Welcome Container */
+.welcome-container {
+    background-color: #ffffff;
+    color: #333;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Avatar Image */
+img {
+    border-radius: 50%;
+}
+
+/* Cards in Main Content */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+/* Adjustments for larger screens */
+@media (max-width: 768px) {
+    .col-lg-2 {
+        display: none;
+    }
+
+    .col-lg-10 {
+        width: 100%;
+    }
+}
