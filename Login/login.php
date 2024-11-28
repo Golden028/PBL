@@ -3,7 +3,7 @@ session_start();
 
 // Dummy user data (replace with database queries in real applications)
 $users = [
-    'admin' => 'password123',
+    'admin' => 'admin123',
     'user' => 'user123'
 ];
 
