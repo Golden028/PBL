@@ -1,0 +1,78 @@
+body {
+    font-family: 'open sauce', sans-serif;
+    background-color: #eee9da;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-container {
+    background: #295f98;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+h1 {
+    font-family: 'Open Sauce', sans-serif;
+    font-size: 1.5em; /* Ukuran font judul */
+    color: white;
+    margin-bottom: 1px;
+}
+h2 {
+    font-family: 'Open Sauce', sans-serif;
+    font-size: 2.9em; /* Ukuran font judul */
+    color: white;
+    margin-bottom: 25px;
+}
+.welcome-message {
+    font-size: 0.8em;
+    color: white;
+    margin-bottom: 8px;
+}
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid white; /* Border lebih tebal */
+    border-radius: 3px;
+    font-size: 0.8em;
+    transition: border-color 0.1s;
+    box-sizing: border-box; /* Menjaga padding tidak mempengaruhi ukuran */
+}
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+.login-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Tambahkan efek bayangan */
+    width: 100%;
+    border: 2px solid #007BFF; /* Border tombol */
+}
+.login-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2); /* Bayangan saat hover */
+}
+.error-message {
+    color: red;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+.footer {
+    position: absolute;
+    bottom: 5px;
+    font-size: 0.7em;
+    color: #666;
+    text-align: center;
+    width: 100%;
+}
