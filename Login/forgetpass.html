@@ -23,7 +23,7 @@
             </div>
             <!-- Right Section -->
             <div class="col-lg-6 p-5">
-                <h2 class="fw-bold mb-30">Login</h2>
+                <h2 class="fw-bold mb-30">Password Recovery</h2>
                 <p class="text-muted mb-4">Enter Username and Password</p>
                 <form action="login.php" method="POST">
                     <div class="form-floating mb-3">
@@ -31,14 +31,18 @@
                         <label for="username">Username</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-                        <label for="password">Password</label>
+                        <input type="date" name="birth_date" class="form-control" id="birth_date" placeholder="Birth Date" required>
+                        <label for="birth_date">Birth Date</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" name="email" class="form-control" id="email" placeholder="email" required>
+                        <label for="email">Email Recovery</label>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
+                    <button type="submit" class="btn btn-primary w-100 py-2">Process</button>
                 </form>
-                <p class="mt-4"><a href="forgetpass.html" class="text-decoration-none text-primary">Forget password?</a></p>
+                <p class="mt-4">Click to back <a href="login.html" class="text-decoration-none text-primary">Login?</a></p>
             </div>
         </div>
     </div>
