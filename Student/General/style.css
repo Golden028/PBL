@@ -3,6 +3,10 @@
     background-color: #295f98 !important;
 }
 
+.nav-link {
+    font-size: 16px;
+}
+
 /* Welcome Container */
 .welcome-container {
     background-color: #ffffff;
@@ -20,6 +24,11 @@ img {
 .card {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
 }
 
 .card-title {
