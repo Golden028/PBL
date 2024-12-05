@@ -33,7 +33,7 @@ img {
 /* Adjustments for larger screens */
 @media (max-width: 768px) {
     .col-lg-2 {
-        display: none;
+        display: 100%;
     }
 
     .col-lg-10 {
