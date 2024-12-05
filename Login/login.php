@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (array_key_exists($username, $users) && $users[$username] === $password) {
         $_SESSION['username'] = $username;
-        header('Location: /Beranda/beranda.html'); // Redirect to dashboard
+        header('Location: /Student/Dashboard/beranda.html'); // Redirect to dashboard
         exit();
     } else {
         $error = "Invalid username or password";
