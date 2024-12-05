@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Prodi - Verifikasi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid vh-100 d-flex flex-column" style="background-color: #f8f9fa;">
+        <div class="row flex-grow-1">
+            <!-- Sidebar -->
+            <div class="col-lg-2 bg-primary text-white p-4">
+                <h3>siforbeta.</h3>
+                <img src="polinema.png" alt="Polinema Logo" style="width: 125px;">
+                <nav class="nav flex-column mt-4">
+                    <a href="admin_dashboard.php" class="nav-link text-white mb-2">Dashboard</a>
+                    <a href="verifikasi.php" class="nav-link text-white mb-2">Verifikasi</a>
+                    <a href="/Logout/logout.html" class="nav-link text-white mt-5">Logout</a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-10 p-5">
+                <div class="container bg-white p-5 rounded shadow-lg">
+                    <h2 class="fw-bold">Verifikasi Dokumen Mahasiswa</h2>
+                    <p class="text-muted">
+                        Admin Prodi: Verifikasi dokumen mahasiswa sesuai prosedur yang berlaku.
+                        <br>Kontak verifikator: <strong>Bu Yanti - 083800666233 (Chat Only)</strong>.
+                        <br><a href="https://intip.in/BebasTanggunganProdiTI" target="_blank">Link Bebas Tanggungan</a>
+                    </p>
+                    <hr>
+
+                    <form action="verifikasi_handler.php" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="tanda_terima" class="form-label">Tanda Terima Penyerahan Laporan TA/Skripsi (PDF, max 1 MB)</label>
+                            <input type="file" class="form-control" id="tanda_terima" name="tanda_terima" accept=".pdf" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pkl_laporan" class="form-label">Tanda Terima Penyerahan Laporan PKL/Magang (PDF, max 1 MB)</label>
+                            <input type="file" class="form-control" id="pkl_laporan" name="pkl_laporan" accept=".pdf" required>
+                            <small class="text-muted">Jika lebih dari 1 kali, gabungkan dalam 1 file PDF.</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bebas_kompen" class="form-label">Upload Surat Bebas Kompen (PDF, max 1 MB)</label>
+                            <input type="file" class="form-control" id="bebas_kompen" name="bebas_kompen" accept=".pdf" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scan_toeic" class="form-label">Upload Scan TOEIC (PDF, max 1 MB)</label>
+                            <input type="file" class="form-control" id="scan_toeic" name="scan_toeic" accept=".pdf" required>
+                            <small class="text-muted">
+                                TOEIC minimal 450 untuk Diploma 4. Jika kurang dari 450, unggah surat keterangan dari UPA Bahasa.
+                            </small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Verifikasi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
