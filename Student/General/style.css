@@ -16,6 +16,17 @@ img {
     border-radius: 50%;
 }
 
+/* Table Customization */
+.table th {
+    background-color: #295f98;
+    color: #fff;
+    text-align: left;
+}
+
+.table td {
+    font-size: 14px;
+}
+
 /* Cards in Main Content */
 .card {
     border-radius: 8px;
@@ -32,11 +43,7 @@ img {
 
 /* Adjustments for larger screens */
 @media (max-width: 768px) {
-    .col-lg-2 {
-        display: 100%;
-    }
-
-    .col-lg-10 {
-        width: 100%;
+    .welcome-container {
+        padding: 20px;
     }
 }

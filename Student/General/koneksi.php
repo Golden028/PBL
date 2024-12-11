@@ -6,7 +6,5 @@ $conn_sqlserver = sqlsrv_connect($host_sqlserver, $connInfo);
 
 if (!$conn_sqlserver) {
     die("Koneksi ke SQL Server gagal: " . print_r(sqlsrv_errors(), true));
-} else {
-    echo "Koneksi ke SQL Server berhasil!<br>";
 }
 ?>

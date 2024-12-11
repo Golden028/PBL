@@ -1,3 +1,29 @@
+<?php
+// Debugging untuk memastikan file koneksi ditemukan
+if (!file_exists('koneksi.php')) {
+    die("File koneksi.php tidak ditemukan di path: " . realpath('koneksi.php'));
+}
+
+// Memasukkan koneksi ke database
+include 'koneksi.php'; // Sesuaikan path relatif ke lokasi koneksi.php
+
+// Validasi koneksi
+if (!$conn_sqlserver) {
+    die("Koneksi ke SQL Server gagal: " . print_r(sqlsrv_errors(), true));
+}
+
+// Query data Student
+$nim = 2341720289; // NIM Student yang akan diambil
+$sql = "SELECT nama, prodi, program, semester FROM Student WHERE nim = ?";
+$params = array($nim);
+$stmt = sqlsrv_query($conn_sqlserver, $sql, $params);
+
+if ($stmt === false) {
+    die("Error saat menjalankan query: " . print_r(sqlsrv_errors(), true));
+}
+
+$Student = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,8 +70,9 @@
                             <div class="card shadow-sm text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">Profile</h5>
-                                    <p class="card-text">View and update your personal details.</p>
-                                    <a href="/Student/General/Profile.html" class="btn btn-primary btn-sm">Go to Profile</a>
+                                    <p class="card-text">Nama: <?= $Student['nama'] ?? 'Data tidak ditemukan'; ?></p>
+                                    <p class="card-text">Prodi: <?= $Student['prodi'] ?? 'Data tidak ditemukan'; ?></p>
+                                    <a href="/Student/General/Profile.php" class="btn btn-primary btn-sm">Go to Profile</a>
                                 </div>
                             </div>
                         </div>
