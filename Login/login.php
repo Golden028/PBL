@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Fetch the user data
         if ($user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
             // Set session variables
-            $_SESSION['name'] = $user['name'];
+            $_SESSION['username'] = $user['name'];
             $_SESSION['roles_name'] = $user['roles'];  // Store the role in the session
 
             // Redirect based on user role
