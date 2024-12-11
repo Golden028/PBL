@@ -1,6 +1,6 @@
 <?php
 // Koneksi ke SQL Server
-$host_sqlserver = "DESKTOP-7J8U2B0"; // Ganti dengan host SQL Server Anda
+$host_sqlserver = "DESKTOP-7J8U2B0";
 $connInfo = array("Database" => "db_web_pbl", "UID" => "", "PWD" => "");
 $conn_sqlserver = sqlsrv_connect($host_sqlserver, $connInfo);
 
@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mkdir($targetDir, 0777, true);
     }
 
-    // Menangani setiap file yang di-upload
     $tandaTerima = uploadFile($_FILES["tanda_terima"], $targetDir);
     $pklLaporan = uploadFile($_FILES["pkl_laporan"], $targetDir);
     $bebasKompen = uploadFile($_FILES["bebas_kompen"], $targetDir);
