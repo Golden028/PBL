@@ -46,31 +46,31 @@
                             <tbody>
                                 <!-- Data akan diisi oleh server-side PHP -->
                                 <?php
-                                // Koneksi ke database
+                                // ==
                                 $conn = new mysqli("localhost", "root", "", "database_name");
 
-                                // Cek koneksi
+                                // ==
                                 if ($conn->connect_error) {
-                                    die("Koneksi gagal: " . $conn->connect_error);
+                                    die("filed: " . $conn->connect_error);
                                 }
 
-                                // Ambil data dari tabel verifikasi
-                                $sql = "SELECT id, nama_mahasiswa, dokumen, status, tanggal_verifikasi, catatan FROM history_verifikasi";
+                                // =
+                                $sql = "SELECT id, name_student, documen, status, date_verify, note FROM history_verify";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
                                         echo "<td>" . $row["id"] . "</td>";
-                                        echo "<td>" . $row["nama_mahasiswa"] . "</td>";
-                                        echo "<td>" . $row["dokumen"] . "</td>";
+                                        echo "<td>" . $row["nama_student"] . "</td>";
+                                        echo "<td>" . $row["documen"] . "</td>";
                                         echo "<td>" . $row["status"] . "</td>";
-                                        echo "<td>" . $row["tanggal_verifikasi"] . "</td>";
-                                        echo "<td>" . $row["catatan"] . "</td>";
+                                        echo "<td>" . $row["date_verify"] . "</td>";
+                                        echo "<td>" . $row["note] . "</td>";
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='6' class='text-center'>Tidak ada data verifikasi.</td></tr>";
+                                    echo "<tr><td colspan='6' class='text-center'>not found history.</td></tr>";
                                 }
 
                                 $conn->close();
