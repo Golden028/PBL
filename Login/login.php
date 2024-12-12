@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($user['roles'] == 'super admin') {
                 header('Location: /Super Admin/Dashboard/dashboard.html'); // Redirect to super admin dashboard
             } elseif ($user['roles'] == 'admin verification') {
-                header('Location: /Admin Verification/Dashboard/Dashboard.html'); // Redirect to admin dashboard
+                header('Location: /Admin Verification/Dashboard/beranda.html'); // Redirect to admin dashboard
             } elseif ($user['roles'] == 'student') {
-                header('Location: /Student/Dashboard/beranda.html'); // Redirect to student dashboard
+                header('Location: /Student/Dashboard/Dashboard.html'); // Redirect to student dashboard
             }
             exit();
         } else {
