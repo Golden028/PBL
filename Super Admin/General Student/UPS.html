@@ -25,20 +25,28 @@
             </div>
             
             <!-- Main Content -->
-            <div class="col-lg-10 p-4">
+            <div class="col-lg-10 p-5">
+                <div class="profile-container p-5 rounded shadow-lg" style="background-color: #ffffff">
                 <h2>Update Student Profile</h2>
                 <!-- Form untuk Update Profile -->
                 <form class="mt-4">
-                    <!-- Upload Foto -->
-                    <div class="mb-3">
-                        <label for="profilePhoto" class="form-label">Upload Foto Profil</label>
-                        <input type="file" class="form-control" id="profilePhoto" accept="image/*">
-                    </div>
 
                     <!-- Nama Lengkap -->
                     <div class="mb-3">
-                        <label for="fullName" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Golden christian">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">NIM</label>
+                        <input type="text" class="form-control" id="fullName" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Major</label>
+                        <input type="text" class="form-control" id="fullName" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Program</label>
+                        <input type="text" class="form-control" id="fullName" >
                     </div>
 
                     <!-- Tanggal Lahir -->
@@ -46,24 +54,8 @@
                         <label for="birthDate" class="form-label">Tanggal Lahir</label>
                         <input type="date" class="form-control" id="birthDate">
                     </div>
-
-                    <!-- Alamat -->
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Alamat</label>
-                        <textarea class="form-control" id="address" rows="3" placeholder="Masukkan Alamat"></textarea>
-                    </div>
-
-                    <!-- Status Aktif -->
-                    <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <select class="form-select" id="status">
-                            <option value="active">Aktif</option>
-                            <option value="inactive">Tidak Aktif</option>
-                        </select>
-                    </div>
-
                     <!-- Tombol Simpan -->
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        <a type="submit" class="btn btn-primary" href="/Super Admin/General Student/GS-profile.html">Simpan Perubahan</a>
                 </form>
             </div>
         </div>
