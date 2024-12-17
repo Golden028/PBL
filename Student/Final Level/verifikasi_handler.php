@@ -39,12 +39,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mkdir($targetDir, 0777, true);
     }
 
+    $finalproject = uploadFile($_FILES["final_project"], $targetDir);
+    $uploadprogram = uploadFile($_FILES["upload_program"], $targetDir);
+    $uploadpublication = uploadFile($_FILES["upload_publication"], $targetDir);
+
     $tandaTerima = uploadFile($_FILES["tanda_terima"], $targetDir);
     $pklLaporan = uploadFile($_FILES["pkl_laporan"], $targetDir);
     $bebasKompen = uploadFile($_FILES["bebas_kompen"], $targetDir);
     $scanToeic = uploadFile($_FILES["scan_toeic"], $targetDir);
 
     // Jika file berhasil diupload, simpan ke database
+
+    if (strpos($finalproject, "uploads/") !== false &&
+        strpos($uploadprogram, "uploads/") !== false &&
+        strpos($uploadpublication, "uploads/") !== false) {
+        
+        // Menyimpan data ke dalam database
+        $nim = 2341720289; // Anda bisa mengganti dengan NIM yang sesuai
+        $sql = "INSERT INTO verifikasi_dokumen (nim, final_project, upload_program, upload_publication) 
+                VALUES (?, ?, ?, ?)";
+        
+        $params = array($nim, $finalproject, $uploadprogram, $uploadpublication);
+        $stmt = sqlsrv_query($conn_sqlserver, $sql, $params);
+        
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        } else {
+            echo "Data berhasil disimpan.";
+        }
+    } else {
+        echo "Ada kesalahan dalam proses upload file.";
+    }
+
     if (strpos($tandaTerima, "uploads/") !== false &&
         strpos($pklLaporan, "uploads/") !== false &&
         strpos($bebasKompen, "uploads/") !== false &&
