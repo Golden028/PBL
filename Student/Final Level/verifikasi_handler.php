@@ -10,7 +10,7 @@ if (!$conn_sqlserver) {
 
 // Fungsi untuk menangani upload file
 function uploadFile($file, $targetDir) {
-    $fileName = basename($file["name"]);
+    $fileName = time() . "_" . basename($file["name"]); // Tambahkan timestamp untuk mencegah nama file duplikat
     $targetFile = $targetDir . $fileName;
     $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
@@ -32,6 +32,11 @@ function uploadFile($file, $targetDir) {
 
 // Menangani file yang di-upload
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Debugging $_FILES
+    echo "<pre>";
+    print_r($_FILES);
+    echo "</pre>";
+
     $targetDir = "uploads/";
 
     // Buat folder jika belum ada
@@ -39,45 +44,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mkdir($targetDir, 0777, true);
     }
 
-<<<<<<< HEAD
     // Upload file
-=======
-    $finalproject = uploadFile($_FILES["final_project"], $targetDir);
-    $uploadprogram = uploadFile($_FILES["upload_program"], $targetDir);
-    $uploadpublication = uploadFile($_FILES["upload_publication"], $targetDir);
-
->>>>>>> a0eb29773644ab465c5af44b17a56453d1f34723
     $tandaTerima = uploadFile($_FILES["tanda_terima"], $targetDir);
     $pklLaporan = uploadFile($_FILES["pkl_laporan"], $targetDir);
     $bebasKompen = uploadFile($_FILES["bebas_kompen"], $targetDir);
     $scanToeic = uploadFile($_FILES["scan_toeic"], $targetDir);
 
-<<<<<<< HEAD
-=======
-    // Jika file berhasil diupload, simpan ke database
+    // Debugging hasil proses upload
+    echo "Tanda Terima: $tandaTerima<br>";
+    echo "PKL Laporan: $pklLaporan<br>";
+    echo "Bebas Kompen: $bebasKompen<br>";
+    echo "Scan TOEIC: $scanToeic<br>";
 
-    if (strpos($finalproject, "uploads/") !== false &&
-        strpos($uploadprogram, "uploads/") !== false &&
-        strpos($uploadpublication, "uploads/") !== false) {
-        
-        // Menyimpan data ke dalam database
-        $nim = 2341720289; // Anda bisa mengganti dengan NIM yang sesuai
-        $sql = "INSERT INTO verifikasi_dokumen (nim, final_project, upload_program, upload_publication) 
-                VALUES (?, ?, ?, ?)";
-        
-        $params = array($nim, $finalproject, $uploadprogram, $uploadpublication);
-        $stmt = sqlsrv_query($conn_sqlserver, $sql, $params);
-        
-        if ($stmt === false) {
-            die(print_r(sqlsrv_errors(), true));
-        } else {
-            echo "Data berhasil disimpan.";
-        }
-    } else {
-        echo "Ada kesalahan dalam proses upload file.";
-    }
-
->>>>>>> a0eb29773644ab465c5af44b17a56453d1f34723
+    // Periksa apakah semua file berhasil diunggah
     if (strpos($tandaTerima, "uploads/") !== false &&
         strpos($pklLaporan, "uploads/") !== false &&
         strpos($bebasKompen, "uploads/") !== false &&
