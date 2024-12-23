@@ -13,18 +13,18 @@ function uploadFile($file, $targetDir) {
     $fileName = basename($file["name"]);
     $targetFile = $targetDir . $fileName;
     $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-    
-    // Memastikan file adalah PDF dan ukuran kurang dari 1 MB
+
+    // Validasi tipe file dan ukuran
     if ($fileType != "pdf") {
         return "Hanya file PDF yang diperbolehkan.";
     }
     if ($file["size"] > 1048576) { // 1 MB
         return "Ukuran file terlalu besar.";
     }
-    
+
     // Memindahkan file ke folder target
     if (move_uploaded_file($file["tmp_name"], $targetFile)) {
-        return $targetFile; // Kembalikan path file yang di-upload
+        return $targetFile;
     } else {
         return "Terjadi kesalahan saat mengupload file.";
     }
@@ -32,36 +32,52 @@ function uploadFile($file, $targetDir) {
 
 // Menangani file yang di-upload
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $targetDir = "uploads/"; // Direktori untuk menyimpan file
-    
-    // Periksa apakah folder upload sudah ada, jika belum buat
+    $targetDir = "uploads/";
+
+    // Buat folder jika belum ada
     if (!is_dir($targetDir)) {
         mkdir($targetDir, 0777, true);
     }
 
+    // Upload file
     $tandaTerima = uploadFile($_FILES["tanda_terima"], $targetDir);
     $pklLaporan = uploadFile($_FILES["pkl_laporan"], $targetDir);
     $bebasKompen = uploadFile($_FILES["bebas_kompen"], $targetDir);
     $scanToeic = uploadFile($_FILES["scan_toeic"], $targetDir);
 
-    // Jika file berhasil diupload, simpan ke database
     if (strpos($tandaTerima, "uploads/") !== false &&
         strpos($pklLaporan, "uploads/") !== false &&
         strpos($bebasKompen, "uploads/") !== false &&
         strpos($scanToeic, "uploads/") !== false) {
-        
-        // Menyimpan data ke dalam database
-        $nim = 2341720289; // Anda bisa mengganti dengan NIM yang sesuai
-        $sql = "INSERT INTO verifikasi_dokumen (nim, tanda_terima, pkl_laporan, bebas_kompen, scan_toeic) 
-                VALUES (?, ?, ?, ?, ?)";
-        
-        $params = array($nim, $tandaTerima, $pklLaporan, $bebasKompen, $scanToeic);
+
+        $nim = 2341720289; // NIM mahasiswa, ganti sesuai kebutuhan
+        $checkSql = "SELECT COUNT(*) AS count FROM verifikasi_dokumen WHERE nim = ?";
+        $checkStmt = sqlsrv_query($conn_sqlserver, $checkSql, array($nim));
+
+        if ($checkStmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $row = sqlsrv_fetch_array($checkStmt, SQLSRV_FETCH_ASSOC);
+        if ($row['count'] > 0) {
+            $sql = "UPDATE verifikasi_dokumen 
+                    SET tanda_terima = ?, pkl_laporan = ?, bebas_kompen = ?, scan_toeic = ? 
+                    WHERE nim = ?";
+            $params = array($tandaTerima, $pklLaporan, $bebasKompen, $scanToeic, $nim);
+        } else {
+            $sql = "INSERT INTO verifikasi_dokumen (nim, tanda_terima, pkl_laporan, bebas_kompen, scan_toeic) 
+                    VALUES (?, ?, ?, ?, ?)";
+            $params = array($nim, $tandaTerima, $pklLaporan, $bebasKompen, $scanToeic);
+        }
+
         $stmt = sqlsrv_query($conn_sqlserver, $sql, $params);
-        
+
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         } else {
-            echo "Data berhasil disimpan.";
+            // Redirect ke halaman sukses.html
+            header("Location: sukses.html");
+            exit();
         }
     } else {
         echo "Ada kesalahan dalam proses upload file.";

@@ -44,37 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Data akan diisi oleh server-side PHP -->
-                                <?php
-                                // ==
-                                $conn = new mysqli("localhost", "root", "", "database_name");
-
-                                // ==
-                                if ($conn->connect_error) {
-                                    die("filed: " . $conn->connect_error);
-                                }
-
-                                // =
-                                $sql = "SELECT id, name_student, documen, status, date_verify, note FROM history_verify";
-                                $result = $conn->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<tr>";
-                                        echo "<td>" . $row["id"] . "</td>";
-                                        echo "<td>" . $row["nama_student"] . "</td>";
-                                        echo "<td>" . $row["documen"] . "</td>";
-                                        echo "<td>" . $row["status"] . "</td>";
-                                        echo "<td>" . $row["date_verify"] . "</td>";
-                                        echo "<td>" . $row["note] . "</td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='6' class='text-center'>not found history.</td></tr>";
-                                }
-
-                                $conn->close();
-                                ?>
+                               
                             </tbody>
                         </table>
                     </div>
