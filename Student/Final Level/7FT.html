@@ -36,25 +36,27 @@
                     </div>
                     <hr>
                     <!-- Verifikasi Info -->
-                    <!-- Main Content -->
-     
-
-                    <form action="verifikasi_handler.php" method="post" enctype="multipart/form-data">
+                    <form action="upload_handler.php" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="nim" class="form-label">NIM</label>
+                            <input type="text" class="form-control" id="nim" name="nim" required>
+                        </div>
                         <div class="mb-3">
                             <label for="final_project" class="form-label">Final Project/Thesis Report (PDF, max 10 MB)</label>
                             <input type="file" class="form-control" id="final_project" name="final_project" accept=".pdf" required>
                         </div>
                         <div class="mb-3">
-                            <label for="upload_program" class="form-label">Uplaod Program/Application (ZIP/RAR, max 1 GB)</label>
-                            <input type="file" class="form-control" id="upload_program" name="upload_program" accept=".pdf" required>
+                            <label for="upload_program" class="form-label">Upload Program/Application (ZIP/RAR, max 1 GB)</label>
+                            <input type="file" class="form-control" id="upload_program" name="upload_program" accept=".zip, .rar" required>
                         </div>
                         <div class="mb-3">
                             <label for="upload_publication" class="form-label">Upload Publication Statement Letter (PDF, max 2 MB)</label>
                             <input type="file" class="form-control" id="upload_publication" name="upload_publication" accept=".pdf" required>
                             <small class="text-muted">If more than 1 time, combine them in 1 PDF file.</small>
                         </div>
-                        <button type="submit" href="/Student/Final Level/S7FT.html" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+                    
                 </div>
             </div>
         </div>
