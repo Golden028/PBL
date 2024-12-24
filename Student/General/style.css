@@ -13,7 +13,7 @@
 
 /* Avatar Image */
 img {
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 /* Cards in Main Content */
@@ -29,6 +29,9 @@ img {
 .card-text {
     font-size: 14px;
 }
+
+
+
 
 /* Adjustments for larger screens */
 @media (max-width: 768px) {
