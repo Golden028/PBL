@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,49 +10,51 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/Admin Verification/Dashboard/style.css">
 </head>
+
 <body>
     <div class="container-fluid vh-100 d-flex flex-column" style="background-color: #eee9da;">
         <div class="row flex-grow-1">
             <!-- Sidebar -->
-            <div class="col-lg-2 bg-primary text-white p-4">
-                <h3>siforbeta.</h3>
-                <img src="polinema.png" alt="Polinema Logo" style="width: 125px;" class="my-3">
+            <aside class="col-lg-2 bg-primary text-white p-4">
+                <h3 class="fw-bold">siforbeta.</h3>
+                <img src="polinema.png" alt="Polinema Logo" class="my-3" style="width: 125px;">
                 <nav class="nav flex-column">
                     <a href="/Super Admin/Dashboard/dashboard.html" class="nav-link text-white mb-2">Dashboard</a>
                     <a href="/Super Admin/General Student/GS.php" class="nav-link text-white mb-2">General Student</a>
                     <a href="/Super Admin/Final Level Student/FLS.php" class="nav-link text-white mb-2">Final Level Student</a>
                     <a href="/Logout/logout.html" class="nav-link text-white mt-5">Logout</a>
                 </nav>
-            </div>
+            </aside>
+
             <!-- Main Content -->
-            <div class="col-lg-10 p-5">
+            <main class="col-lg-10 p-5">
                 <div class="container bg-white p-5 rounded shadow-lg">
                     <h2 class="fw-bold">Verification History</h2>
                     <p class="text-muted">List of student document verification history by study program admin.</p>
                     <hr>
 
-                    <!-- Tabel History -->
+                    <!-- Table History -->
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead class="table-primary">
                                 <tr>
                                     <th>#</th>
                                     <th>NIM</th>
-                                    <th>Dokumen</th>
-                                    <th>Status</th>
-                                    <th>Tanggal Verifikasi</th>
-                                    <th>Catatan</th>
+                                    <th>Tanda Terima</th>
+                                    <th>PKL Report</th>
+                                    <th>Free Kompen</th>
+                                    <th>Scan Toich</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 // Koneksi ke database menggunakan SQLSRV
                                 $serverName = "localhost"; // Ganti sesuai nama server SQL Server 
-                                $connectionInfo = array(
+                                $connectionInfo = [
                                     "Database" => "db_web_pbl",
                                     "UID" => "", // Ganti dengan username SQL Server 
                                     "PWD" => "", // Ganti dengan password SQL Server 
-                                );
+                                ];
                                 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
                                 // Cek koneksi
@@ -92,8 +95,9 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
 </body>
+
 </html>
