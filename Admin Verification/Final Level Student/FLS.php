@@ -19,7 +19,7 @@
                 <nav class="nav flex-column">
                     <a href="/Admin Verification/Dashboard/beranda.html" class="nav-link text-white mb-2">Dashboard</a>
                     <a href="/Admin Verification/Final Level Student/FLS.html" class="nav-link text-white mb-2">Verification</a>
-                    <a href="/Admin Verification/History Verification/HV.html" class="nav-link text-white mb-2">History Verification</a>
+                    <a href="/Admin Verification/History Verification/HV.php" class="nav-link text-white mb-2">History Verification</a>
                     <a href="/Logout/logout.html" class="nav-link text-white mt-5">Logout</a>
                 </nav>
             </div>
@@ -70,7 +70,7 @@
                                             echo "<td>" . htmlspecialchars($row['prodi'] ?? '') . "</td>";
                                             echo "<td><span class='badge bg-warning text-dark'>" . htmlspecialchars($row['verification_status'] ?? 'Unknown') . "</span></td>";
                                             // Tambahkan tautan untuk halaman detail
-                                            echo "<td><a href='/Admin Verification/Final Level Student/FL1.php?nim=" . urlencode($row['nim']) . "' class='btn btn-primary btn-sm'>Detail</a></td>";
+                                            echo "<td><a href='/Admin Verification/Final Level Student/FL.html?nim=" . urlencode($row['nim']) . "' class='btn btn-primary btn-sm'>Detail</a></td>";
                                             echo "</tr>";
                                         }
                                     } else {

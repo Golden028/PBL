@@ -32,10 +32,10 @@ if ($conn === false) {
             <!-- Sidebar -->
             <div class="col-lg-2 bg-primary text-white p-4">
                 <h3>siforbeta.</h3>
-                <img src="polinema.png" alt="Polinema Logo" style="width: 125px;" class="my-3">
+                <img src="/Admin Verification/Dashboard/polinema.png" alt="Polinema Logo" style="width: 125px;" class="my-3">
                 <nav class="nav flex-column">
                     <a href="/Admin Verification/Dashboard/beranda.html" class="nav-link text-white mb-2">Dashboard</a>
-                    <a href="/Admin Verification/Final Level Student/DVS.html" class="nav-link text-white mb-2">Verification</a>
+                    <a href="/Admin Verification/Final Level Student/FLS.php" class="nav-link text-white mb-2">Verification</a>
                     <a href="/Admin Verification/History Verification/HV.php" class="nav-link text-white mb-2">History Verification</a>
                     <a href="/Logout/logout.html" class="nav-link text-white mt-5">Logout</a>
                 </nav>

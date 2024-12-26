@@ -72,7 +72,6 @@ try {
                                     <p><strong>Name:</strong> <?php echo htmlspecialchars($studentData['nama']); ?></p>
                                     <p><strong>Program:</strong> <?php echo htmlspecialchars($studentData['program']); ?></p>
                                     <p><strong>Major:</strong> <?php echo htmlspecialchars($studentData['prodi']); ?></p>
-                                    <p><strong>Semester:</strong> <?php echo htmlspecialchars($studentData['semester']); ?></p>
                                 </div>
                             </div>
                         </div>
