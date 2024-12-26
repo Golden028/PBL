@@ -46,7 +46,6 @@ try {
                 <nav class="nav flex-column">
                     <a href="/Student/Dashboard/Dashboard.html" class="nav-link text-white mb-2">Dashboard</a>
                     <a href="/Student/General/General.html" class="nav-link text-white mb-2">General</a>
-                    <a href="/Student/UKT/UKT.html" class="nav-link text-white mb-2">UKT</a>
                     <a href="/Student/Final Level/FL.html" class="nav-link text-white mb-2">Final Level</a>
                     <a href="/Logout/logout.html" class="nav-link text-white mt-5">Logout</a>
                 </nav>
