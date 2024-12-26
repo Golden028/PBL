@@ -18,7 +18,7 @@
                 <img src="polinema.png" alt="Polinema Logo" style="width: 125px;" class="my-3">
                 <nav class="nav flex-column">
                     <a href="/Super Admin/Dashboard/dashboard.html" class="nav-link text-white mb-2">Dashboard</a>
-                    <a href="/Super Admin/General Student/GS.html" class="nav-link text-white mb-2">General Student</a>
+                    <a href="/Super Admin/General Student/GS.php" class="nav-link text-white mb-2">General Student</a>
                     <a href="/Super Admin/Final Level Student/FLS.php" class="nav-link text-white mb-2">Final Level Student</a>
                     <a href="/Logout/logout.html" class="nav-link text-white mt-5">Logout</a>
                 </nav>
