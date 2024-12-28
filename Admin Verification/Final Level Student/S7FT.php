@@ -2,6 +2,11 @@
 // Koneksi ke database
 include('db_connection.php'); // Pastikan file db_connection.php ada dan berisi koneksi ke database
 
+// Mengecek koneksi database
+if (!$conn) {
+    die("Connection failed: " . sqlsrv_errors());
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $action = $_POST['action'];
@@ -19,17 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt = sqlsrv_query($conn, $query, $params);
     if (!$stmt) {
-        die(print_r(sqlsrv_errors(), true));
+        die(print_r(sqlsrv_errors(), true)); // Menampilkan error jika query gagal
     }
 }
 
 // Ambil data dari database, termasuk nama mahasiswa
 $query = "SELECT u.*, s.nama AS student_name FROM uploaded_files u LEFT JOIN Student s ON u.nim = s.nim";
-
 $result = sqlsrv_query($conn, $query);
 
 if (!$result) {
-    die(print_r(sqlsrv_errors(), true));
+    die(print_r(sqlsrv_errors(), true)); // Menampilkan error jika query gagal
 }
 ?>
 <!DOCTYPE html>
@@ -202,14 +206,14 @@ if (!$result) {
                                     <td>
                                         <div class="action-buttons">
                                             <!-- Accept Button -->
-                                            <form method="POST" class="d-inline">
+                                            <form method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to accept this file?');">
                                                 <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'] ?? '') ?>">
                                                 <input type="hidden" name="action" value="accept">
                                                 <button type="submit" class="btn btn-success btn-sm">Accept</button>
                                             </form>
                                             
-                                            <!-- Reject Button with Reason -->
-                                            <form method="POST" class="d-inline">
+                                            <!-- Reject Button -->
+                                            <form method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to reject this file?');">
                                                 <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'] ?? '') ?>">
                                                 <input type="hidden" name="action" value="reject">
                                                 <button type="submit" class="btn btn-danger btn-sm">Reject</button>
