@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'db_connection.php';
-
 $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -9,13 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     if (!empty($username) && !empty($password)) {
-        $sql = "SELECT sa.nama, sa.password_hash, r.role_name AS roles 
-                FROM SuperAdmin sa
-                JOIN roles r ON r.id = sa.nip
+        // Query untuk SuperAdmin
+        $sql = "SELECT sa.nama, sa.password_hash, 'SuperAdmin' AS role 
+                FROM SuperAdmin sa 
                 WHERE sa.nama = ?";
         $params = [$username];
-
         $stmt = sqlsrv_query($conn, $sql, $params);
+
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
@@ -23,22 +22,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
             if (hash('sha256', $password) === bin2hex($user['password_hash'])) {
                 $_SESSION['username'] = $user['nama'];
-                $_SESSION['roles_name'] = $user['roles'];
-
-                if ($user['roles'] == 'SuperAdmin') {
-                    header('Location: /SuperAdmin/Dashboard/dashboard.html');
-                } elseif ($user['roles'] == 'verifikasi_dokumen') {
-                    header('Location: /AdminVerification/Dashboard/beranda.html');
-                } else {
-                    header('Location: /Student/Dashboard/dashboard.html');
-                }
+                $_SESSION['roles'] = $user['role'];
+                header('Location: /Super Admin/Dashboard/Dashboard.html');
                 exit();
-            } else {
-                $message = "Password salah!";
             }
-        } else {
-            $message = "Pengguna tidak ditemukan!";
         }
+
+        // Query untuk Admin_verification
+        $sql = "SELECT av.admin_username AS nama, av.admin_password_hash AS password_hash, 'Admin_verification' AS role 
+                FROM Admin_verification av 
+                WHERE av.admin_username = ?";
+        $stmt = sqlsrv_query($conn, $sql, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        if ($user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            if (hash('sha256', $password) === bin2hex($user['password_hash'])) {
+                $_SESSION['username'] = $user['nama'];
+                $_SESSION['roles'] = $user['role'];
+                header('Location: /Admin Verification/Dashboard/beranda.html');
+                exit();
+            }
+        }
+
+        // Query untuk Student
+        $sql = "SELECT s.nama, s.password_hash, 'Student' AS role 
+                FROM Student s 
+                WHERE s.nama = ?";
+        $stmt = sqlsrv_query($conn, $sql, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        if ($user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            if (hash('sha256', $password) === bin2hex($user['password_hash'])) {
+                $_SESSION['username'] = $user['nama'];
+                $_SESSION['roles'] = $user['role'];
+                header('Location: /Student/Dashboard/Dashboard.html');
+                exit();
+            }
+        }
+
+        // Jika tidak ditemukan
+        $message = "Pengguna tidak ditemukan atau password salah!";
     } else {
         $message = "Isi semua kolom!";
     }
@@ -47,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 <body>
-    <?php if (!empty($message)): ?>
-        <p><?= $message ?></p>
-    <?php endif; ?>
+<?php if (!empty($message)): ?>
+    <p><?= $message ?></p>
+<?php endif; ?>
 </body>
 </html>

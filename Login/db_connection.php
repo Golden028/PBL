@@ -1,11 +1,10 @@
 <?php
-$serverName = "localhost"; 
+$serverName = "localhost";
 $connectionOptions = [
-    "Database" => "db_web_pbl", 
-    "Uid" => "", 
+    "Database" => "db_web_pbl",
+    "Uid" => "",
     "PWD" => ""
 ];
-
 $conn = sqlsrv_connect($serverName, $connectionOptions);
 
 if ($conn === false) {

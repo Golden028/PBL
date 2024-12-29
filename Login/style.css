@@ -4,14 +4,13 @@ body {
     padding: 0;
     background-color: #eee9da;
 }
+
 h3 {
     color: #fff;
     font: 'Open Sauce';
+    font-size: 3em;
 }
-h3 {
-    color: #fff;
-    font-size : 3em;
-}
+
 .text-primary {
     color: #295f98 !important;
 }
