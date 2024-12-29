@@ -1,56 +1,54 @@
 <?php
-// Start the session
 session_start();
+include 'db_connection.php';
 
-// Include the database connection
-require 'C:/Users/ASUS/OneDrive/Dokumen/PBL/PBL/koneksi.php';
-
-// Placeholder for message if login fails
 $message = "";
 
-// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Collect form data
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Validate input
     if (!empty($username) && !empty($password)) {
-        // Query to check if the user exists and password matches
-        $sql = "SELECT u.name, u.password, r.role_name AS roles
-                FROM users u
-                JOIN roles r ON u.role_id = r.id
-                WHERE u.name = ? AND u.password = ?";
-        $params = array($username, $password);
+        $sql = "SELECT sa.nama, sa.password_hash, r.role_name AS roles 
+                FROM SuperAdmin sa
+                JOIN roles r ON r.id = sa.nip
+                WHERE sa.nama = ?";
+        $params = [$username];
 
         $stmt = sqlsrv_query($conn, $sql, $params);
-
-        // Check if the query executed successfully
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
 
-        // Fetch the user data
         if ($user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-            // Set session variables
-            $_SESSION['username'] = $user['name'];
-            $_SESSION['roles_name'] = $user['roles'];  // Store the role in the session
+            if (hash('sha256', $password) === bin2hex($user['password_hash'])) {
+                $_SESSION['username'] = $user['nama'];
+                $_SESSION['roles_name'] = $user['roles'];
 
-            // Redirect based on user role
-            if ($user['roles'] == 'super admin') {
-                header('Location: /Super Admin/Dashboard/dashboard.html'); // Redirect to super admin dashboard
-            } elseif ($user['roles'] == 'admin verification') {
-                header('Location: /Admin Verification/Dashboard/beranda.html'); // Redirect to admin dashboard
-            } elseif ($user['roles'] == 'student') {
-                header('Location: /Student/Dashboard/Dashboard.html'); // Redirect to student dashboard
+                if ($user['roles'] == 'SuperAdmin') {
+                    header('Location: /SuperAdmin/Dashboard/dashboard.html');
+                } elseif ($user['roles'] == 'verifikasi_dokumen') {
+                    header('Location: /AdminVerification/Dashboard/beranda.html');
+                } else {
+                    header('Location: /Student/Dashboard/dashboard.html');
+                }
+                exit();
+            } else {
+                $message = "Password salah!";
             }
-            exit();
         } else {
-            // Invalid username or password
-            $message = "Invalid username or password!";
+            $message = "Pengguna tidak ditemukan!";
         }
     } else {
-        $message = "Please fill in all fields!";
+        $message = "Isi semua kolom!";
     }
 }
 ?>
+<!DOCTYPE html>
+<html>
+<body>
+    <?php if (!empty($message)): ?>
+        <p><?= $message ?></p>
+    <?php endif; ?>
+</body>
+</html>
